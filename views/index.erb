@@ -2,8 +2,61 @@
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
       <h1 class="bg-primary text-center p25">
-        Bootstrapped!
+        Geocoding Dashboard
       </h1>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+	  <h3>Search by coordinates</h3>
+      <form action="/geocode" method="post">
+		    <div class="form-group">
+		      <label for="lat">Latitude</label>
+		      <input type="text" class="form-control" name="lat" placeholder="-48.876667">
+		    </div>
+		    <div class="form-group">
+		      <label for="lng">Longitude</label>
+		      <input type="text" class="form-control" name="lng" placeholder="-123.393333">
+		    </div>
+		    <button type="submit" class="btn btn-primary">Find Address</button>
+	  </form>
+    </div>
+	<div class="col-md-5">
+	  <form action="/reverse_geocode" method="post">
+		  <h3>Search by address</h3>
+  		    <div class="form-group">
+  		      <label for="street">Street</label>
+  		      <input type="text" class="form-control" name="street" placeholder="1600 Pennsylvania Avenue NW">
+  		    </div>
+  		    <div class="form-group">
+  		      <label for="city">City</label>
+  		      <input type="text" class="form-control" name="city" placeholder="Washington">
+  		    </div>
+			<div class="form-group">
+  		      <label for="state">State</label>
+  		      <input type="text" class="form-control" name="state" placeholder="D.C">
+  		    </div>
+			<div class="form-group">
+  		      <label for="country">Country</label>
+  		      <input type="text" class="form-control" name="country" placeholder="20500">
+  		    </div>
+  		    <input type="submit" class="btn btn-primary" value="submit">
+  	  </form>
+    </div>
+  </div>
+  <div class="row">
+	  <div class="col-md-5">
+		  <% locations.each do |location| %>
+		    <div class="card" style="width: 18rem;">
+	  	  		<div class="card-body">
+			      <h5 class="card-title"><%= location.street || "No street" %>, <%= location.city || "No city"%></h5>
+			      <h6 class="card-subtitle mb-2 text-muted"><%= location.lat %></h6>
+				  <h6 class="card-subtitle mb-2 text-muted"><%= location.lng %></h6>
+			      <a href="#" class="card-link">Card link</a>
+	  		    </div>
+			</div>
+		  <% end %>
+	  </div>
+  </div>
+
 </div>
